@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OCPlatformBundle\Controller;
+namespace OC\PlatformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,12 +57,19 @@ class AdvertController extends Controller
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return Response
+     * @throws \Exception
      */
     public function addAction(Request $request): response
     {
+        $antispam = $this->container->get('oc_platform.antispam');
 
-        if ($request->isMethod('POST')) {
+        $text = 'dgdgdfgd';
+        if ($antispam->isSpam($text)) {
+            throw new \Exception('Votre message a été détecté comme spam !');
+        }
+
+       /* if ($request->isMethod('POST')) {
 
             $this->addFlash('notice', 'Annonce bien enregistrée.');
 
@@ -70,7 +77,8 @@ class AdvertController extends Controller
 
         }
 
-        return $this->render('OCPlatformBundle:Advert:add.html.twig');
+
+        return $this->render('OCPlatformBundle:Advert:add.html.twig');*/
 
     }
 
@@ -81,7 +89,8 @@ class AdvertController extends Controller
      * @return Response
      */
 
-    public function editAction(int $id, Request $request): response
+    public
+    function editAction(int $id, Request $request): response
     {
 
         $advert = [
@@ -112,7 +121,8 @@ class AdvertController extends Controller
      *
      * @return Response
      */
-    public function deleteAction(int $id): response
+    public
+    function deleteAction(int $id): response
     {
 
         return $this->render('OCPlatformBundle:Advert:delete.html.twig');
@@ -124,7 +134,8 @@ class AdvertController extends Controller
      *
      * @return Response
      */
-    public function menuAction($limit): response
+    public
+    function menuAction($limit): response
     {
         $listAdverts = array(
             array('id' => 2, 'title' => 'Recherche développeur Symfony'),

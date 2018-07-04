@@ -1,0 +1,15 @@
+{% extends "OCCoreBundle::layout.html.twig" %}
+
+
+{% block body %}
+    <h2>Accueil</h2>
+
+    <hr>
+    {% for message in app.flashes('info') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <p>Accueil ici</p>
+{% endblock %}

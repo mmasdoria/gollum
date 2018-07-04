@@ -3,15 +3,13 @@ oc_platform:
     prefix:   /platform
 
 oc_platform_home:
-    path:      /{page}
-    defaults:
-        _controller: OCPlatformBundle:Advert:index
-        page:        1
+    path: /{page}
+    defaults:  { _controller: OCPlatformBundle:Advert:index, page: 1 }
     requirements:
-        page: \d*
+        page: '\d+'
 
 oc_platform_view:
-    path:      /advert/{id}
+    path: /advert/{id}
     defaults:
         _controller: OCPlatformBundle:Advert:view
     requirements:
@@ -34,5 +32,4 @@ oc_platform_delete:
     defaults:
         _controller: OCPlatformBundle:Advert:delete
     requirements:
-        id: \d+
         id: \d+

@@ -1,0 +1,42 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+    <entity name="OC\PlatformBundle\Entity\Advert"
+                       repository-class="OC\PlatformBundle\Repository\AdvertRepository">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="published" column="published" type="boolean"/>
+        <field name="date" column="date" type="datetime"/>
+        <field name="title" column="title" type="string"/>
+        <field name="author" column="author" type="string"/>
+        <field name="content" column="content" type="text"/>
+        <field name="updatedAt" column="updatedAt" type="datetime" nullable="true"/>
+        <field name="nbApplications" column="nbApplications" type="integer" nullable="true"/>
+        <field name="slug" column="slug" type="string"/>
+        <one-to-one field="image" target-entity="OC\PlatformBundle\Model\ImageInterface">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-one>
+        <many-to-many field="categories" target-entity="OC\PlatformBundle\Model\CategoryInterface">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+            <join-table name="oc_advert_category">
+                <join-columns>
+                    <join-column name="advert_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="category_id" referenced-column-name="id"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+        <one-to-many field="applications" target-entity="OC\PlatformBundle\Model\ApplicationInterface"
+                     mapped-by="advert"/>
+        <lifecycle-callbacks>
+            <lifecycle-callback type="preUpdate" method="updateDate"/>
+        </lifecycle-callbacks>
+    </entity>
+</doctrine-mapping>

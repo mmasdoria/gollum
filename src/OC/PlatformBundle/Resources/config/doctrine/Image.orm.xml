@@ -1,0 +1,13 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+    <entity name="OC\PlatformBundle\Entity\Image"
+                       repository-class="OC\PlatformBundle\Repository\ImageRepository">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="url" column="url" type="string"/>
+        <field name="alt" column="alt" type="string"/>
+    </entity>
+</doctrine-mapping>

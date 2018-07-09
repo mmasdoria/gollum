@@ -40,11 +40,10 @@ class AdvertController extends Controller
      */
     public function viewAction(int $id): response
     {
-        $em = $this->getDoctrine()->getManager();
+        $em     = $this->getDoctrine()->getManager();
+        $repo   = $em->getRepository('OCPlatformBundle:Advert');
+        $advert = $repo->find($id);
 
-        $advert = $em
-            ->getRepository('OCPlatformBundle:Advert')
-            ->find($id);
         if (null === $advert) {
 
             throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");

@@ -36,14 +36,14 @@ class Application implements ApplicationInterface
     /**
      * @var
      */
-    private $advert;
+    protected $advert;
 
     /**
      * Application constructor.
      */
     public function __construct()
     {
-        $this->date       = new \DateTime();
+        $this->date = new \DateTime();
     }
 
     /**
@@ -137,5 +137,21 @@ class Application implements ApplicationInterface
     public function setAdvert(AdvertInterface $advert): void
     {
         $this->advert = $advert;
+    }
+
+    /**
+
+     */
+    public function increase()
+    {
+        $this->getAdvert()->increaseNbApplication();
+    }
+
+    /**
+
+     */
+    public function decrease()
+    {
+        $this->getAdvert()->decreaseNbApplication();
     }
 }

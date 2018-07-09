@@ -2,7 +2,7 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                    https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
-    <mapped-superclass name="OC\PlatformBundle\Entity\Advert"
+    <entity name="OC\PlatformBundle\Entity\Advert"
                        repository-class="OC\PlatformBundle\Repository\AdvertRepository">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO"/>
@@ -12,6 +12,9 @@
         <field name="title" column="title" type="string"/>
         <field name="author" column="author" type="string"/>
         <field name="content" column="content" type="text"/>
+        <field name="updatedAt" column="updatedAt" type="datetime" nullable="true"/>
+        <field name="nbApplications" column="nbApplications" type="integer" nullable="true"/>
+        <field name="slug" column="slug" type="string"/>
         <one-to-one field="image" target-entity="OC\PlatformBundle\Model\ImageInterface">
             <cascade>
                 <cascade-persist/>
@@ -32,5 +35,8 @@
         </many-to-many>
         <one-to-many field="applications" target-entity="OC\PlatformBundle\Model\ApplicationInterface"
                      mapped-by="advert"/>
-    </mapped-superclass>
+        <lifecycle-callbacks>
+            <lifecycle-callback type="preUpdate" method="updateDate"/>
+        </lifecycle-callbacks>
+    </entity>
 </doctrine-mapping>

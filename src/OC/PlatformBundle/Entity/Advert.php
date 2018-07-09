@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace OC\PlatformBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use OC\PlatformBundle\Model\AdvertInterface;
 use OC\PlatformBundle\Model\ApplicationInterface;
 use OC\PlatformBundle\Model\CategoryInterface;
 use OC\PlatformBundle\Model\ImageInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Advert
@@ -63,6 +65,22 @@ class Advert implements AdvertInterface
      * @var ArrayCollection
      */
     protected $applications;
+
+    /**
+     * @var
+     */
+    protected $updatedAt;
+
+    /**
+     * @var
+     */
+    protected $nbApplications;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     */
+    protected $slug;
+
 
     /**
      * Advert constructor.
@@ -181,9 +199,9 @@ class Advert implements AdvertInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getCategories(): ArrayCollection
+    public function getCategories(): Collection
     {
         return $this->categories;
     }
@@ -219,9 +237,9 @@ class Advert implements AdvertInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getApplications(): ArrayCollection
+    public function getApplications(): Collection
     {
         return $this->applications;
     }
@@ -255,5 +273,78 @@ class Advert implements AdvertInterface
         if ($this->hasApplication($application)) {
             $this->applications->removeElement($application);
         }
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt(\DateTime $updatedAt): void
+    {
+
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     *
+     */
+    public function updateDate(): void
+    {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbApplications(): int
+    {
+        return $this->nbApplications;
+    }
+
+    /**
+     * @param int $nb
+     */
+    public function setNbApplications(int $nb): void
+    {
+        $this->nbApplications = $nb;
+    }
+
+    /**
+     *
+     */
+    public function decreaseNbApplication(): void
+    {
+        $this->nbApplications--;
+    }
+
+    /**
+     *
+     */
+    public function increaseNbApplication(): void
+    {
+        $this->nbApplications++;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
     }
 }

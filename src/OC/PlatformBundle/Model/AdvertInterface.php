@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace OC\PlatformBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * Class AdvertInterface
@@ -81,9 +81,9 @@ interface AdvertInterface
     public function setImage(?ImageInterface $image = null): void;
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getCategories(): ArrayCollection;
+    public function getCategories(): Collection;
 
     /**
      * @param CategoryInterface $category
@@ -103,9 +103,9 @@ interface AdvertInterface
     public function removeCategory(CategoryInterface $category): void;
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getApplications(): ArrayCollection;
+    public function getApplications(): Collection;
 
     /**
      * @param ApplicationInterface $application
@@ -124,4 +124,50 @@ interface AdvertInterface
      */
     public function removeApplication(ApplicationInterface $application): void;
 
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime;
+
+    /**
+     * @param \DateTime $updatedAt
+     *
+     * @return \DateTime
+     */
+    public function setUpdatedAt(\DateTime $updatedAt): void;
+
+    /**
+     *
+     */
+    public function updateDate(): void;
+
+    /**
+     * @return int
+     */
+    public function getNbApplications(): int;
+
+    /**
+     * @param int $nb
+     */
+    public function setNbApplications(int $nb): void;
+
+    /**
+     *
+     */
+    public function increaseNbApplication(): void;
+
+    /**
+     *
+     */
+    public function decreaseNbApplication(): void;
+
+     /**
+     * @return int
+     */
+    public function getSlug(): string;
+
+    /**
+     * @param int $nb
+     */
+    public function setSlug(string $slug): void;
 }

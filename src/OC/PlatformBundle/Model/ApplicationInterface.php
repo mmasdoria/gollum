@@ -78,4 +78,13 @@ interface ApplicationInterface
      */
     public function setAdvert(AdvertInterface $advert): void;
 
+    /**
+
+     */
+    public function increase();
+
+    /**
+
+     */
+    public function decrease();
 }

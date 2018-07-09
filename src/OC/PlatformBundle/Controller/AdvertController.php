@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace OC\PlatformBundle\Controller;
 
 use OC\PlatformBundle\Entity\AdvertSkill;
+use OC\PlatformBundle\Entity\Application;
+use OC\PlatformBundle\Entity\Image;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use OC\PlatformBundle\Entity\Advert;
 
@@ -70,9 +73,11 @@ class AdvertController extends Controller
     }
 
     /**
+     * @param Request $request
+     *
      * @return Response
      */
-    public function addAction(): response
+    public function addAction(Request $request): response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -80,6 +85,24 @@ class AdvertController extends Controller
         $advert->setTitle('Recherche développeur Symfony.');
         $advert->setAuthor('Alexandre');
         $advert->setContent("Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…");
+
+        $image = new Image();
+        $image->setUrl('http://sdz-upload.s3.amazonaws.com/prod/upload/job-de-reve.jpg');
+        $image->setAlt('Job de rêve');
+
+        $advert->setImage($image);
+
+        $application1 = new Application();
+        $application1->setAuthor('Marine');
+        $application1->setContent("J'ai toutes les qualités requises.");
+
+        $application2 = new Application();
+        $application2->setAuthor('Pierre');
+        $application2->setContent("Je suis très motivé.");
+
+        $application1->setAdvert($advert);
+
+        $application2->setAdvert($advert);
 
         $listSkills = $em->getRepository('OCPlatformBundle:Skill')->findAll();
 
@@ -98,7 +121,16 @@ class AdvertController extends Controller
 
         $em->flush();
 
-        return $this->render('OCPlatformBundle:Advert:add.html.twig', array('advert' => $advert));
+        $em->persist($application1);
+
+        $em->persist($application2);
+
+        $em->flush();
+        if ($request->isMethod('POST')) {
+            $this->addFlash('notice', 'Annonce bien enregistrée.');
+            return $this->redirectToRoute('oc_platform_view', array('id' => $advert->getId()));
+        }
+        return $this->render('OCPlatformBundle:Advert:add.html.twig');
 
     }
 
@@ -121,7 +153,7 @@ class AdvertController extends Controller
 
         }
 
-        $listCategories = $em->getRepository('CategoryInterface.php')->findAll();
+        $listCategories = $em->getRepository('OCPlatformBundle:Category')->findAll();
 
         foreach ($listCategories as $category) {
 

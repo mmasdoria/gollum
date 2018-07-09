@@ -4,52 +4,37 @@ declare(strict_types=1);
 
 namespace OC\PlatformBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use OC\PlatformBundle\Model\AdvertInterface;
 use OC\PlatformBundle\Model\ApplicationInterface;
 
 /**
- * Application
- *
- * @ORM\Table(name="application")
- * @ORM\Entity(repositoryClass="OC\PlatformBundle\Repository\ApplicationRepository")
+ * Class Application
+ * @package OC\PlatformBundle\Entity
  */
 class Application implements ApplicationInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var
      */
     protected $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @var
      */
     protected $author;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="content", type="text")
+     * @var
      */
     protected $content;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime")
      */
     protected $date;
 
     /**
-     * @var Advert
-     * @ORM\ManyToOne(targetEntity="OC\PlatformBundle\Entity\Advert",inversedBy="applications")
-     * @ORM\JoinColumn(nullable=false)
+     * @var
      */
     private $advert;
 

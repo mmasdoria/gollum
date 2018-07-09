@@ -4,37 +4,26 @@ declare(strict_types=1);
 
 namespace OC\PlatformBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use OC\PlatformBundle\Model\ImageInterface;
 
 /**
- * Image
- *
- * @ORM\Table(name="image")
- * @ORM\Entity(repositoryClass="OC\PlatformBundle\Repository\ImageRepository")
+ * Class Image
+ * @package OC\PlatformBundle\Entity
  */
 class Image implements ImageInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var
      */
     protected $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @var
      */
     protected $url;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="alt", type="string", length=255)
+     * @var
      */
     protected $alt;
 

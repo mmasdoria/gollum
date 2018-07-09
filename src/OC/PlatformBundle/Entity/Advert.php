@@ -5,76 +5,62 @@ declare(strict_types=1);
 namespace OC\PlatformBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
 use OC\PlatformBundle\Model\AdvertInterface;
 use OC\PlatformBundle\Model\ApplicationInterface;
+use OC\PlatformBundle\Model\CategoryInterface;
 use OC\PlatformBundle\Model\ImageInterface;
 
 /**
- * Advert
- *
- * @ORM\Table(name="advert")
- * @ORM\Entity(repositoryClass="OC\PlatformBundle\Repository\AdvertRepository")
+ * Class Advert
+ * @package OC\PlatformBundle\Entity
  */
 class Advert implements AdvertInterface
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * @ORM\Column(name="published", type="boolean")
+     * @var bool
      */
     protected $published = true;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime")
      */
     protected $date;
 
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
      */
     protected $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255)
      */
     protected $author;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="content", type="text")
      */
     protected $content;
 
     /**
-     * @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist"})
+     * @var ImageInterface
      */
     protected $image;
 
     /**
-     * @ORM\ManyToMany(targetEntity="CategoryInterface.php", cascade={"persist"})
-     * @ORM\JoinTable(name="oc_advert_category")
+     * @var ArrayCollection
      */
-
     protected $categories;
 
     /**
-     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Application", mappedBy="advert")
+     * @var ArrayCollection
      */
     protected $applications;
 
@@ -197,15 +183,15 @@ class Advert implements AdvertInterface
     /**
      * @return ArrayCollection
      */
-    public function getCategories() :ArrayCollection
+    public function getCategories(): ArrayCollection
     {
         return $this->categories;
     }
 
     /**
-     * @param \OC\PlatformBundle\Model\CategoryInterface $category
+     * @param CategoryInterface $category
      */
-    public function addCategory(\OC\PlatformBundle\Model\CategoryInterface $category): void
+    public function addCategory(CategoryInterface $category): void
     {
         if (!$this->hasCategory($category)) {
             $this->categories->add($category);
@@ -213,19 +199,19 @@ class Advert implements AdvertInterface
     }
 
     /**
-     * @param \OC\PlatformBundle\Model\CategoryInterface $category
+     * @param CategoryInterface $category
      *
      * @return bool
      */
-    public function hasCategory(\OC\PlatformBundle\Model\CategoryInterface $category): bool
+    public function hasCategory(CategoryInterface $category): bool
     {
         return $this->categories->contains($category);
     }
 
     /**
-     * @param \OC\PlatformBundle\Model\CategoryInterface $category
+     * @param CategoryInterface $category
      */
-    public function removeCategory(\OC\PlatformBundle\Model\CategoryInterface $category): void
+    public function removeCategory(CategoryInterface $category): void
     {
         if ($this->hasCategory($category)) {
             $this->categories->removeElement($category);
@@ -235,7 +221,7 @@ class Advert implements AdvertInterface
     /**
      * @return ArrayCollection
      */
-    public function getApplications() :ArrayCollection
+    public function getApplications(): ArrayCollection
     {
         return $this->applications;
     }

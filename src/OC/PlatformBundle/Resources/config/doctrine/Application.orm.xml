@@ -1,0 +1,17 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+    <mapped-superclass name="OC\PlatformBundle\Entity\Application"
+                       repository-class="OC\PlatformBundle\Repository\ApplicationRepository">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="author" column="author" type="string"/>
+        <field name="content" column="content" type="string"/>
+        <field name="date" column="date" type="datetime"/>
+        <many-to-one field="advert" target-entity="OC\PlatformBundle\Model\AdvertInterface" inversed-by="applications">
+            <join-column nullable="false"/>
+        </many-to-one>
+    </mapped-superclass>
+</doctrine-mapping>

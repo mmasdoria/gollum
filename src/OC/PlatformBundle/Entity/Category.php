@@ -4,28 +4,19 @@ declare(strict_types=1);
 
 namespace OC\PlatformBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
-
 /**
- * @ORM\Entity
- * @ORM\Table(name="category")
+ * Class Category
+ * @package OC\PlatformBundle\Entity
  */
-class CategoryInterface implements \OC\PlatformBundle\Model\CategoryInterface
+class Category implements \OC\PlatformBundle\Model\CategoryInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var
      */
     protected $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @var
      */
     protected $name;
 

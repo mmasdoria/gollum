@@ -4,24 +4,21 @@ declare(strict_types=1);
 
 namespace OC\PlatformBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use OC\PlatformBundle\Model\SkillInterface;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="skill")
+ * Class Skill
+ * @package OC\PlatformBundle\Entity
  */
 class Skill implements SkillInterface
 {
     /**
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var
      */
     protected $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=255)
+     * @var
      */
     protected $name;
 

@@ -18,7 +18,7 @@ interface AdvertInterface
      *
      * @return int
      */
-    public function getId(): int;
+    public function getId(): ?int;
 
     /**
      * @return mixed
@@ -43,7 +43,7 @@ interface AdvertInterface
     /**
      * @return string
      */
-    public function getTitle(): string;
+    public function getTitle(): ?string;
 
     /**
      * @param string $title
@@ -53,7 +53,7 @@ interface AdvertInterface
     /**
      * @return string
      */
-    public function getAuthor(): string;
+    public function getAuthor(): ?string;
 
     /**
      * @param string $author
@@ -63,7 +63,7 @@ interface AdvertInterface
     /**
      * @return string
      */
-    public function getContent(): string;
+    public function getContent(): ?string;
 
     /**
      * @param string $content

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OC\PlatformBundle\Repository;
 
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * Class AdvertRepository
@@ -120,5 +121,44 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    /**
+     * @param $page
+     * @param $nbPerPage
+     *
+     * @return Paginator
+     */
+    public function getAdverts($page, $nbPerPage): Paginator
+    {
+        $query = $this->createQueryBuilder('a')
+            ->leftJoin('a.image', 'i')
+            ->addSelect('i')
+            ->leftJoin('a.categories', 'c')
+            ->addSelect('c')
+            ->orderBy('a.date', 'DESC')
+            ->getQuery();
 
+        $query
+            ->setFirstResult(($page - 1) * $nbPerPage)
+            ->setMaxResults($nbPerPage);
+
+        return new Paginator($query, true);
+    }
+
+    public function deleteAdvertByDaysPassed($nbDays)
+    {
+        $date = new \DateTime();
+        $date->modify('-' . $nbDays . 'days');
+
+        $qb = $this->createQueryBuilder('a')
+            ->delete('OCPlatformBundle:Advert', 'advert')
+            ->where('a.updatedAt < : date')
+            ->andWhere('a.nbApplications = nbApp')
+            ->setParameter('date', $date)
+            ->setParameter('nbApp', 0);
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+
+    }
 }

@@ -9,5 +9,13 @@
         </id>
         <field name="url" column="url" type="string"/>
         <field name="alt" column="alt" type="string"/>
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="preUpload"/>
+            <lifecycle-callback type="preUpdate" method="preUpload"/>
+            <lifecycle-callback type="postPersist" method="upload"/>
+            <lifecycle-callback type="postUpdate" method="upload"/>
+            <lifecycle-callback type="preRemove" method="preRemoveUpload"/>
+            <lifecycle-callback type="postRemove" method="removeUpload"/>
+        </lifecycle-callbacks>
     </entity>
 </doctrine-mapping>

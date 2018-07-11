@@ -31,7 +31,7 @@ class Category implements \OC\PlatformBundle\Model\CategoryInterface
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }

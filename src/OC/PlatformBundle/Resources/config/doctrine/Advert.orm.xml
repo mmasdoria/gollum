@@ -1,5 +1,6 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                    https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
     <entity name="OC\PlatformBundle\Entity\Advert"
@@ -14,10 +15,13 @@
         <field name="content" column="content" type="text"/>
         <field name="updatedAt" column="updatedAt" type="datetime" nullable="true"/>
         <field name="nbApplications" column="nbApplications" type="integer" nullable="true"/>
-        <field name="slug" column="slug" type="string"/>
+        <field name="slug" column="slug" type="string">
+        <gedmo:slug unique="true" style="camel" updatable="false" separator="_" fields="title" />
+        </field>
         <one-to-one field="image" target-entity="OC\PlatformBundle\Model\ImageInterface">
             <cascade>
                 <cascade-persist/>
+                <cascade-remove/>
             </cascade>
         </one-to-one>
         <many-to-many field="categories" target-entity="OC\PlatformBundle\Model\CategoryInterface">

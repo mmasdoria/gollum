@@ -97,7 +97,7 @@ class Advert implements AdvertInterface
      *
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -137,7 +137,7 @@ class Advert implements AdvertInterface
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -153,7 +153,7 @@ class Advert implements AdvertInterface
     /**
      * @return string
      */
-    public function getAuthor(): string
+    public function getAuthor(): ?string
     {
         return $this->author;
     }
@@ -169,7 +169,7 @@ class Advert implements AdvertInterface
     /**
      * @return string
      */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }

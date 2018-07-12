@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace OC\PlatformBundle\Model;
 
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\PersistentCollection;
 
 /**
  * Class AdvertInterface
@@ -131,8 +130,6 @@ interface AdvertInterface
 
     /**
      * @param \DateTime $updatedAt
-     *
-     * @return \DateTime
      */
     public function setUpdatedAt(\DateTime $updatedAt): void;
 
@@ -161,13 +158,24 @@ interface AdvertInterface
      */
     public function decreaseNbApplication(): void;
 
-     /**
-     * @return int
+    /**
+     * @return string
      */
     public function getSlug(): string;
 
     /**
-     * @param int $nb
+     * @param string $slug
      */
     public function setSlug(string $slug): void;
+
+    /**
+     * @return string
+     */
+    public function getIp(): string;
+
+    /**
+     * @param string $ip
+     */
+    public function setIp(string $ip): void;
+
 }

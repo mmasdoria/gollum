@@ -9,10 +9,10 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="published" column="published" type="boolean"/>
-        <field name="date" column="date" type="datetime"/>
+        <field name="date" column="date" type="datetime" />
         <field name="title" column="title" type="string"/>
         <field name="author" column="author" type="string"/>
-        <field name="content" column="content" type="text"/>
+        <field name="content" column="content" type="text" />
         <field name="updatedAt" column="updatedAt" type="datetime" nullable="true"/>
         <field name="nbApplications" column="nbApplications" type="integer" nullable="true"/>
         <field name="slug" column="slug" type="string">

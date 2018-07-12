@@ -32,5 +32,4 @@ class CategoryType extends AbstractType
             'data_class' => 'OC\PlatformBundle\Entity\Category'
         ));
     }
-
 }

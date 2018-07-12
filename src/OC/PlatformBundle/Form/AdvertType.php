@@ -50,11 +50,8 @@ class AdvertType extends AbstractType
                 }
 
                 if (!$advert->getPublished() || null === $advert->getId()) {
-
                     $event->getForm()->add('published', CheckboxType::class, array('required' => false));
-
                 } else {
-
                     $event->getForm()->remove('published');
                 }
             }
@@ -78,6 +75,4 @@ class AdvertType extends AbstractType
     {
         return 'oc_platformbundle_advert';
     }
-
-
 }

@@ -11,9 +11,9 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
 
-    OC\PlatformBundle\:
-        resource: '../../src/OC/PlatformBundle/*'
-        # you can exclude directories or files
-        # but if a service is unused, it's removed anyway
-        exclude: '../../src/OC/PlatformBundle/{Entity,Repository,Tests,Controller,EventListener, Antispam, Twig}'
+#    OC\PlatformBundle\:
+#        resource: '../../src/OC/PlatformBundle/*'
+#        # you can exclude directories or files
+#        # but if a service is unused, it's removed anyway
+#        exclude: '../../src/OC/PlatformBundle/{Entity,Repository,Tests,Controller,EventListener, Antispam, Twig}'
 

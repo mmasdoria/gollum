@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace OC\PlatformBundle\Controller;
 
 use OC\PlatformBundle\Entity\Advert;
+use OC\PlatformBundle\Event\MessagePostEvent;
+use OC\PlatformBundle\Event\PlatformEvents;
 use OC\PlatformBundle\Form\AdvertEditType;
 use OC\PlatformBundle\Form\AdvertType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -93,7 +95,14 @@ class AdvertController extends Controller
         $advert = new Advert();
         $form   = $this->createForm(AdvertType::class, $advert);
 
+
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $event = new MessagePostEvent($advert->getContent(), $this->getUser());
+
+            $this->get('event_dispatcher')->dispatch(PlatformEvents::POST_MESSAGE, $event);
+
+            $advert->setContent($event->getMessage());
+
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($advert);

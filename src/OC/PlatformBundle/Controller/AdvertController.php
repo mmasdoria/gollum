@@ -245,4 +245,16 @@ class AdvertController extends Controller
 
         return new Response($content);
     }
+
+    /**
+     * @param $name
+     *
+     * @return Response
+     */
+    public function translationAction(string $name)
+    {
+        return $this->render('OCPlatformBundle:Advert:translation.html.twig', [
+            'name' => $name
+        ]);
+    }
 }

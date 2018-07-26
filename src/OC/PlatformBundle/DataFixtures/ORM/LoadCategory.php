@@ -7,7 +7,7 @@ namespace OC\PlatformBundle\DataFixtures\ORM;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use OC\PlatformBundle\Entity\CategoryInterface;
+use OC\PlatformBundle\Entity\Category;
 
 /**
  * Class LoadCategory
@@ -29,7 +29,7 @@ class LoadCategory extends Fixture implements FixtureInterface
         );
 
         foreach ($names as $name) {
-            $category = new CategoryInterface();
+            $category = new Category();
             $category->setName($name);
 
             $manager->persist($category);

@@ -18,7 +18,7 @@ framework:
         strict_requirements: ~
     form: ~
     csrf_protection: ~
-    validation: { enable_annotations: true }
+    validation: { enabled: true, enable_annotations: true }
     #serializer: { enable_annotations: true }
     default_locale: '%locale%'
     trusted_hosts: ~
@@ -90,3 +90,11 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
+
+fos_user:
+    db_driver:     orm
+    firewall_name: main
+    user_class:    OC\UserBundle\Entity\User
+    from_email:
+        address: "noreply@yourcompany.com"
+        sender_name: "No Reply"

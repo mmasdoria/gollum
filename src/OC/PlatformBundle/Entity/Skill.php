@@ -13,12 +13,12 @@ use OC\PlatformBundle\Model\SkillInterface;
 class Skill implements SkillInterface
 {
     /**
-     * @var
+     * @var integer
      */
     protected $id;
 
     /**
-     * @var
+     * @var string
      */
     protected $name;
 
@@ -45,6 +45,4 @@ class Skill implements SkillInterface
     {
         $this->name = $name;
     }
-
-
 }

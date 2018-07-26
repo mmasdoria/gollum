@@ -10,7 +10,6 @@ use OC\PlatformBundle\Model\AdvertInterface;
 use OC\PlatformBundle\Model\ApplicationInterface;
 use OC\PlatformBundle\Model\CategoryInterface;
 use OC\PlatformBundle\Model\ImageInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Advert
@@ -67,20 +66,24 @@ class Advert implements AdvertInterface
     protected $applications;
 
     /**
-     * @var
+     * @var \DateTime
      */
     protected $updatedAt;
 
     /**
-     * @var
+     * @var integer
      */
     protected $nbApplications;
 
     /**
-     * @Gedmo\Slug(fields={"title"})
+     * @var string
      */
     protected $slug;
 
+    /**
+     * @var string
+     */
+    protected $ip;
 
     /**
      * Advert constructor.
@@ -346,5 +349,21 @@ class Advert implements AdvertInterface
     public function setSlug(string $slug): void
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIp(): string
+    {
+        return $this->ip;
+    }
+
+    /**
+     * @param string $ip
+     */
+    public function setIp(string $ip): void
+    {
+        $this->ip = $ip;
     }
 }

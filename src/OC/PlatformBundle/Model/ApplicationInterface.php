@@ -79,12 +79,20 @@ interface ApplicationInterface
     public function setAdvert(AdvertInterface $advert): void;
 
     /**
-
      */
     public function increase();
 
     /**
-
      */
     public function decrease();
+
+    /**
+     * @return string
+     */
+    public function getIp(): string;
+
+    /**
+     * @param string $ip
+     */
+    public function setIp(string $ip): void;
 }

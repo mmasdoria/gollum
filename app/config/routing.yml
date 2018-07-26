@@ -4,7 +4,9 @@ oc_core:
 
 oc_platform:
     resource: "@OCPlatformBundle/Resources/config/routing.yml"
-    prefix:   /platform
+    prefix:    /{_locale}/platform
+    requirements:
+        _locale: en|fr # les locales disponibles, séparées par des pipes « | »
 
 oc_platform_home:
     path: /{page}
@@ -37,9 +39,39 @@ oc_platform_delete:
         _controller: OCPlatformBundle:Advert:delete
     requirements:
         id: \d+
+
 oc_platform.purger.advert:
     path: /purge/{days}
     defaults:
         _controller: OCPlatformBundle:Advert:purge
     requirements:
               id: \d+
+
+oc_platform_test:
+    path: /test
+    defaults:
+        _controller: OCPlatformBundle:Advert:test
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+oc_platform_translation:
+  path:     /traduction/{name}
+  defaults:
+    _controller: OCPlatformBundle:Advert:translation

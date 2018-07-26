@@ -1,0 +1,16 @@
+OC\PlatformBundle\Entity\Advert:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: title
+    properties:
+        date:
+            - Date: ~
+        title:
+            - Length:
+                min: 10
+        content:
+            - NotBlank: ~
+        author:
+            - Length:
+                min: 2
+        image:
+            - Image:

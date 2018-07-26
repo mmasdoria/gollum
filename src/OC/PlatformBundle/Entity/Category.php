@@ -11,12 +11,12 @@ namespace OC\PlatformBundle\Entity;
 class Category implements \OC\PlatformBundle\Model\CategoryInterface
 {
     /**
-     * @var
+     * @var integer
      */
     protected $id;
 
     /**
-     * @var
+     * @var string
      */
     protected $name;
 

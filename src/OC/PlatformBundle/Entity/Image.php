@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace OC\PlatformBundle\Entity;
 
-use Doctrine\ORM\Query\AST\PathExpression;
 use OC\PlatformBundle\Model\ImageInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -170,7 +169,6 @@ class Image implements ImageInterface
     public function removeUpload(): void
     {
         if (file_exists($this->tempFilename)) {
-
             unlink($this->tempFilename);
         }
     }
@@ -182,5 +180,4 @@ class Image implements ImageInterface
     {
         return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
     }
-
 }

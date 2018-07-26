@@ -14,17 +14,17 @@ use OC\PlatformBundle\Model\ApplicationInterface;
 class Application implements ApplicationInterface
 {
     /**
-     * @var
+     * @var integer
      */
     protected $id;
 
     /**
-     * @var
+     * @var string
      */
     protected $author;
 
     /**
-     * @var
+     * @var string
      */
     protected $content;
 
@@ -34,9 +34,14 @@ class Application implements ApplicationInterface
     protected $date;
 
     /**
-     * @var
+     * @var AdvertInterface
      */
     protected $advert;
+
+    /**
+     * @var string
+     */
+    protected $ip;
 
     /**
      * Application constructor.
@@ -110,7 +115,6 @@ class Application implements ApplicationInterface
     public function setDate(\DateTime $date)
     {
         $this->date = $date;
-
     }
 
     /**
@@ -153,5 +157,21 @@ class Application implements ApplicationInterface
     public function decrease()
     {
         $this->getAdvert()->decreaseNbApplication();
+    }
+
+    /**
+     * @param string $ip
+     */
+    public function setIp(string $ip): void
+    {
+        $this->ip=$ip;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIp(): string
+    {
+        return $this->ip;
     }
 }

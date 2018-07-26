@@ -15,22 +15,22 @@ use OC\PlatformBundle\Model\SkillInterface;
 class AdvertSkill implements AdvertSkillInterface
 {
     /**
-     * @var
+     * @var integer
      */
     protected $id;
 
     /**
-     * @var
+     * @var string
      */
     protected $level;
 
     /**
-     * @var
+     * @var AdvertInterface
      */
     protected $advert;
 
     /**
-     * @var
+     * @var SkillInterface
      */
     protected $skill;
 
@@ -89,6 +89,4 @@ class AdvertSkill implements AdvertSkillInterface
     {
         $this->skill = $skill;
     }
-
-
 }
